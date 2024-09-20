@@ -30,7 +30,8 @@ class Segmentator(nn.Module):
                         self.backbone.get_input_depth(),
                         self.ARCH["dataset"]["sensor"]["img_prop"]["height"],
                         self.ARCH["dataset"]["sensor"]["img_prop"]["width"]))
-
+    
+    _, stub_skips = self.backbone(stub)
     decoderModule = imp.load_source("decoderModule",
                                     booger.TRAIN_PATH + '/tasks/semantic/decoders/' +
                                     self.ARCH["decoder"]["name"] + '.py')
