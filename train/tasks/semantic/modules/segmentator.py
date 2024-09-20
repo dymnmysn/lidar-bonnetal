@@ -31,11 +31,6 @@ class Segmentator(nn.Module):
                         self.ARCH["dataset"]["sensor"]["img_prop"]["height"],
                         self.ARCH["dataset"]["sensor"]["img_prop"]["width"]))
 
-    if torch.cuda.is_available():
-      stub = stub.cuda()
-      self.backbone.cuda()
-    _, stub_skips = self.backbone(stub)
-
     decoderModule = imp.load_source("decoderModule",
                                     booger.TRAIN_PATH + '/tasks/semantic/decoders/' +
                                     self.ARCH["decoder"]["name"] + '.py')
